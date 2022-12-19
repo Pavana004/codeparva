@@ -129,54 +129,6 @@ function Giveaway() {
                       </Form>
                     )}
                   </Formik>
-                  {/* <from>
-                    <h5>What pet do you want to give away ?</h5>
-                    <br />
-                    <div className="col-md-4">
-                      <label for="validationCustom01" className="form-label">Pet type</label><span className='star'>*</span>
-                      <select className="form-select" id="validationCustom04" name='pettype' onChange={formik.handleChange} required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-                    <br />
-                    <div className="col-md-4">
-                      <label for="validationCustom01" className="form-label">Breed</label><span className='star'>*</span>
-                      <select className="form-select" id="validationCustom04" name='breed' onChange={formik.handleChange}  required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-                    <br />
-                    <h5>Please fill in your details</h5>
-                    <br />
-                    <div className="col-md-4">
-                      <label for="validationCustom01" className="form-label">First name</label><span className='star'>*</span>
-                      <input type="text" className="form-control" id="validationCustom01" name='firstname' onChange={formik.handleChange} required />
-                      <div className="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <br />
-                    <div className="col-md-4">
-                      <label for="validationCustom01" className="form-label">Email</label><span className='star'>*</span>
-                      <input type="text" className="form-control" id="validationCustom01" name='email' onChange={formik.handleChange} required />
-                      <div className="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <br />
-                    <div className="col-md-4">
-                      <label for="validationCustom01" className="form-label">Phone</label><span className='star'>*</span>
-                      <input type="text" className="form-control" id="validationCustom01" name='phone' onChange={formik.handleChange} required />
-                      <div className="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                  </from> */}
-                  {/* // <div className='submitbutton'>
-                  //   <button type='submit' className='btn'>REQUEST FOR GIVE AWAY</button>
-                  // </div> */}
                 </div>
               </Modal>
             </div>
