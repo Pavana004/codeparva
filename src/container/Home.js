@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { AiOutlineClose } from "react-icons/ai";
 import Giveaway from './Giveaway';
 import Pettable from './Pettable';
+import data from "./Petdata.json";
 
 
 Modal.setAppElement('#root');
@@ -118,6 +119,7 @@ function Home() {
                                                         <option value="">Choose...</option>
                                                         <option value="Dog">Dog</option>
                                                         <option value="Cat">Cat</option>
+                                                       
                                                     </Field>
                                                     {errors.pettype && touched.pettype ? (
                                                         <div className='error'>{errors.pettype}</div>
@@ -128,8 +130,13 @@ function Home() {
                                                     <label className="form-label">Breed</label><span className='star'>*</span>
                                                     <Field name="breed" as="select" className="form-select">
                                                         <option value="">Choose...</option>
-                                                        <option value="Lab">Lab</option>
-                                                        <option value="PersianCat">Persian cat</option>
+                                                        {data.map(({breed,id})=>{
+                                                            return(
+                                                                <>
+                                                                <option key={id} value={breed}>{breed}</option>
+                                                                </>
+                                                            )
+                                                        })}
                                                     </Field>
                                                     {errors.breed && touched.breed ? (
                                                         <div className='error'>{errors.breed}</div>
