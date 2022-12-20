@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import Navbar from '../components/Navbar';
 import "../container/home.css";
 import mainImg from "../assets/img1.jpg";
@@ -10,7 +10,6 @@ import * as Yup from 'yup';
 import { AiOutlineClose } from "react-icons/ai";
 import Giveaway from './Giveaway';
 import Pettable from './Pettable';
-import data from "./Petdata.json";
 
 
 Modal.setAppElement('#root');
@@ -24,11 +23,53 @@ function Home() {
     const [open, setOpen] = useState(false);
     const [open3, setOpen3] = useState(false);
     const [view, setView] = useState("dogs");
+    const [breedfilter, setBreedfilter] = useState([]);
 
+
+    const petdata = [
+        {
+            id: "1",
+            name: "Dogs"
+        },
+        {
+            id: "2",
+            name: "Cats"
+        }
+    ]
+
+    const breeds = [
+        {
+            id:"1",
+            petid:"Dogs",
+            breedname:"Lab"
+        },
+        {
+            id:"2",
+            petid:"Dogs",
+            breedname:"dabarman"
+        },
+        {
+            id:"3",
+            petid:"Cats",
+            breedname:"persion cat"
+        },
+        {
+            id:"4",
+            petid:"Cats",
+            breedname:"country cat"
+        }
+      ]
+
+
+
+  const handlebreed = (id)=>{
+       const fil = breeds.filter(res => res.petid === id);
+       setBreedfilter(fil);
+  }
 
     const SignupSchema = Yup.object().shape({
         pettype: Yup.string()
-            .min(2, 'Too Short!')
+            .min(1, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
         breed: Yup.string()
@@ -106,8 +147,10 @@ function Home() {
                                         validationSchema={SignupSchema}
                                         onSubmit={(values, { resetForm }) => {
                                             localStorage.setItem("data", JSON.stringify(values));
+                                            console.log(values)
                                             resetForm({ values: "" })
                                         }}
+                                     
                                     >
                                         {({ errors, touched }) => (
                                             <Form>
@@ -115,11 +158,13 @@ function Home() {
                                                 <br />
                                                 <div className="col-md-4 ">
                                                     <label className="form-label">Pet Type</label><span className='star'>*</span>
-                                                    <Field name="pettype" as="select" className="form-select">
+                                                    <Field name="pettype" as="select" className="form-select" onClick={(e)=>handlebreed(e.target.value)}>
                                                         <option value="">Choose...</option>
-                                                        <option value="Dog">Dog</option>
-                                                        <option value="Cat">Cat</option>
-                                                       
+                                                        {petdata.map((p) => {
+                                                            return (
+                                                                <option key={p.id} value={p.name}>{p.name}</option>
+                                                            )
+                                                        })}
                                                     </Field>
                                                     {errors.pettype && touched.pettype ? (
                                                         <div className='error'>{errors.pettype}</div>
@@ -130,10 +175,10 @@ function Home() {
                                                     <label className="form-label">Breed</label><span className='star'>*</span>
                                                     <Field name="breed" as="select" className="form-select">
                                                         <option value="">Choose...</option>
-                                                        {data.map(({breed,id})=>{
-                                                            return(
+                                                        {breedfilter.map((bre,index) => {
+                                                            return (
                                                                 <>
-                                                                <option key={id} value={breed}>{breed}</option>
+                                                                    <option key={index} value={bre.breedname}>{bre.breedname}</option>
                                                                 </>
                                                             )
                                                         })}
